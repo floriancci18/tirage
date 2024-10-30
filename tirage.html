@@ -40,13 +40,16 @@
 <div id="winners"></div>
 
 <audio id="music" src="compte_a_rebours.mp3" loop></audio>
+<audio id="jingle" src="jingle.mp3"></audio>
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 <script>
     const names = ["Imane", "Stéphane", "Imran", "Tristan", "Hugo", "Romain", "Ilan", "Tanguy", "Jimmy", "Nicolas"];
     const countdownElement = document.getElementById("countdown");
     const winnersElement = document.getElementById("winners");
     const music = document.getElementById("music");
-    let countdown = 5;
+    const jingle = document.getElementById('jingle');
+    let countdown = 10;
+    
 
     document.getElementById("startButton").addEventListener("click", () => {
         winnersElement.innerHTML = ""; // Reset previous winners
@@ -62,6 +65,7 @@
                 selectWinners();
                 music.pause();
                 music.currentTime = 0;
+                jingle.play();
                 launchConfetti(); // Lancement des confettis
             }
         }, 1000);
@@ -81,9 +85,23 @@
     function launchConfetti() {
         // Options de confetti
         confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
+            particleCount: 20,
+            spread: 20,
+            origin: { y: 0.6 },
+            scalar:10,
+            shapes: ['image'], // Spécifie l'utilisation d'images
+            shapeOptions: {
+            image: [{
+        src: "logo.png",
+        width: 1500,
+        height: 1500,
+      },
+      {
+        src: "kenza.png",
+        width: 1500,
+        height: 1500,
+      }],
+    },
         });
     }
 </script>
